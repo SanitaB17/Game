@@ -2,7 +2,9 @@
 # You can delete these comments, but do not change the name of this file
 # Write your code to expect a terminal of 80 characters wide and 24 rows high
 import gspread
+import os
 from google.oauth2.service_account import Credentials
+from datetime import datetime
 
 SCOPE = [
     "https://www.googleapis.com/auth/spreadsheets",
@@ -21,49 +23,101 @@ data = sales.get_all_values()
 
 
 def main_menu():
-    # ASCII art title
-    title = """
-,------.                  ,--.      ,--------.             ,--.         
-|  .--. ' ,---. ,--,--, ,-'  '-.    '--.  .--',---.  ,---. |  | ,--,--. 
-|  '--'.'| .-. :|      \\'-.  .-'       |  |  | .-. :(  .-' |  |' ,-.  | 
-|  |\\  \\ \\   --.|  ||  |  |  |         |  |  \\   --..-'  `)|  |\\ '-'  | 
-`--' '--' `----'`--''--'  `--'         `--'   `----'`----' `--' `--`--' 
-                ,----.     ,--.   ,--.     ,---.                        
-                '.-.  |     \  `.'  /     '   .-'                       
-                  .' <       '.    /      `.  `-.                       
-                /'-'  |        |  |       .-'    |                      
-                `----'         `--'       `-----'                       
     """
-    # Main menu options
-    menu_options = [
-        "1. Rent Car",
-        "2. View Booking",
-        "3. Cancel Booking"
-    ]
+    Welcome message and main menu
+    """
+    os.system("clear")
+    print("###############################################")
+    print("Welcome to the Tesla car rental system")
+    print("###############################################")
+    print("Please select an option from the main menu")
+    print("1. Rent Car")
+    print("2. View Booking")
+    print("3. Cancel Booking")
+    while True:
+        try:
+            choice = int(input("Please Enter your choice: \n"))
+        except ValueError:
+            print("Please enter a valid number!")
+            continue
+        if choice == 1:
+            rent_car()
+        elif choice == 2:
+            view_booking()
+        elif choice == 3:
+            cancel_booking()
+            break
+        else:
+            print("Please select a number between 1 and 3\n")
 
-    # Display the ASCII art title
-    print(title)
 
-    # Display the main menu options
-    for option in menu_options:
-        print(option)
+def rent_car():
+    """
+    Rent Car function to select car and add to booking
+    """
+    os.system("clear")
+    print("Please select a car model to rent")
+    print("")
+    print("1. Tesla model 3")
+    print("2. Tesla model Y")
+    print("3. Tesla model S")
+    print("")
 
-    # Get user input for menu selection
-    choice = input("Please enter your choice: ")
+    while True:
+        choice = input("Please select a car model to rent: \n")
+        if choice == "1":
+            car = "Tesla model 3"
+            break
+        elif choice == "2":
+            car = "Tesla model Y"
+            break
+        elif choice == "3":
+            car = "Tesla model S"
+            break
+        else:
+            print("Please select a number between 1 and 3\n")
 
-    if choice == "1":
-        print("You chose Option Rent Car")
-    elif choice == "2":
-        print("You chose View Booking")
-    elif choice == "3":
-        print("You chose Cancel Booking")
-        return
-    else:
-        print("Invalid choice. Please try again.")
+    while True:
+        user_name = input("Please enter your name: ")
+        if not user_name.isalpha():
+            print("Name should contain only letters.")
+            continue
+        break
 
-    # Recursive call to display the main menu again
+    while True:
+        try:
+            start_d_str = input("Enter start date (DD-MM-YYYY): ")
+            start_d = datetime.strptime(start_d_str, '%d-%m-%Y')
+            end_d_str = input("Enter end date (DD-MM-YYYY): ")
+            end_d = datetime.strptime(end_d_str, '%d-%m-%Y')
+            days = (end_d - start_d).days
+            if days < 0:
+                raise ValueError("End date should be after start date.")
+            break
+        except ValueError as ve:
+            print(ve)
+            continue
+
+    print(f"You have selected to rent the {car} for {days} days")
+    print(f"Rental period: {start_d_str} to {end_d_str}")
+    print(f"User name: {user_name}")
+
+    while True:
+        confirm = input("Please confirm your booking (yes/no): \n")
+        if confirm.lower() == "yes":
+            """
+            Store details in Google Sheet
+            """
+            sales = SHEET.worksheet('bookings')
+            sales.append_row([user_name, car, start_d_str, end_d_str, days])
+            print("Booking confirmed!")
+            break
+        elif confirm.lower() == "no":
+            print("Booking cancelled!")
+            break
+        else:
+            print("Please enter 'yes' or 'no'\n")
     main_menu()
 
 
-# Call the main menu function to start the program
 main_menu()
