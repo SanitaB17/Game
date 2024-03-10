@@ -21,6 +21,12 @@ sales = SHEET.worksheet('bookings')
 
 data = sales.get_all_values()
 
+PRICE_PER_DAY = {
+    'Tesla model 3': 50,
+    'Tesla model Y': 70,
+    'Tesla model S': 75
+}
+
 
 def main_menu():
     """
@@ -78,8 +84,8 @@ def rent_car():
             print("Please select a number between 1 and 3\n")
 
     while True:
-        user_name = input("Please enter your name: ")
-        if not user_name.isalpha():
+        user_n = input("Please enter your name: ")
+        if not user_n.isalpha():
             print("Name should contain only letters.")
             continue
         break
@@ -97,10 +103,11 @@ def rent_car():
         except ValueError as ve:
             print(ve)
             continue
-
+    tot = booking_cost(car, days)
     print(f"You have selected to rent the {car} for {days} days")
     print(f"Rental period: {start_d_str} to {end_d_str}")
-    print(f"User name: {user_name}")
+    print(f"User name: {user_n}")
+    print(f"Total price: ${tot}")
 
     while True:
         confirm = input("Please confirm your booking (yes/no): \n")
@@ -109,7 +116,7 @@ def rent_car():
             Store details in Google Sheet
             """
             sales = SHEET.worksheet('bookings')
-            sales.append_row([user_name, car, start_d_str, end_d_str, days])
+            sales.append_row([user_n, car, start_d_str, end_d_str, days, tot])
             print("Booking confirmed!")
             break
         elif confirm.lower() == "no":
@@ -118,6 +125,15 @@ def rent_car():
         else:
             print("Please enter 'yes' or 'no'\n")
     main_menu()
+
+
+def booking_cost(car, days):
+    """
+    Calculates total price for the car rental
+    """
+    cost_per_day = PRICE_PER_DAY[car]
+    tot = cost_per_day * days
+    return tot
 
 
 main_menu()
