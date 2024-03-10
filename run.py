@@ -160,4 +160,21 @@ def booking_cost(car, days):
     return PRICE_PER_DAY[car] * days
 
 
+def view_booking():
+    """
+    Search for a name and prints the booking details
+    """
+    search_n = input("Please enter your name: ")
+    
+    bookings = sales.get_all_values()
+    
+    m_bookings = [booking for booking in bookings if booking[0] == search_n]
+    
+    if not m_bookings:
+        print(f"No bookings found for {search_n}")
+    else:
+        print("Bookings found:")
+        for booking in m_bookings:
+            print(booking)
+
 main_menu()
