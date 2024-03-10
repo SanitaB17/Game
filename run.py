@@ -40,13 +40,14 @@ def main_menu():
     print("Please select an option from the main menu\n")
     print("1. Rent Car")
     print("2. View Booking")
-    print("3. Cancel Booking\n")
+    print("3. Cancel Booking")
+    print("4. Exit\n")
 
     while True:
         try:
             choice = int(input("Please Enter your choice: "))
-            if choice not in range(1, 4):
-                raise ValueError("Please enter a number between 1 and 3.")
+            if choice not in range(1, 5):
+                raise ValueError("Please enter a number between 1 and 4.")
             break
         except ValueError as ve:
             print(ve)
@@ -58,6 +59,10 @@ def main_menu():
         view_booking()
     elif choice == 3:
         cancel_booking()
+    elif choice == 4:
+        clear_bookings()  # Clear bookings upon program exit
+        print("Exiting the program.")
+        exit()
 
 
 def rent_car():
@@ -211,7 +216,7 @@ def cancel_booking():
 
         while True:
             try:
-                choice = int(input("Please select a booking to cancel: "))
+                choice = int(input("Enter a booking number to cancel: "))
                 if choice not in range(1, len(m_bookings) + 1):
                     raise ValueError("Please select a valid booking number.")
                 break
@@ -228,6 +233,21 @@ def cancel_booking():
 
     return_to_main = input("Press enter to return to main menu...")
     main_menu()
+
+
+def clear_bookings():
+    """
+    Clear all booking data from the spreadsheet, keeping the headings
+    """
+    try:
+        num_rows = len(sales.get_all_values())
+        if num_rows > 1:
+            sales.delete_rows(2, num_rows)
+            print("All booking data cleared successfully.")
+        else:
+            print("No booking data to clear.")
+    except Exception as e:
+        print(f"An error occurred while clearing booking data: {e}")
 
 
 main_menu()
