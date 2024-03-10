@@ -177,5 +177,8 @@ def view_booking():
         for booking in m_bookings:
             print(booking)
 
+    return_to_main = input("Press enter to return to main menu...")
+    main_menu()
+
 
 main_menu()
