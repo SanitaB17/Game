@@ -134,6 +134,7 @@ def rent_car():
             break
         else:
             print("Please enter 'yes' or 'no'")
+    return_to_main = input("Press enter to return to main menu...")
     print("Returning to main menu...")
     main_menu()
 
@@ -176,6 +177,54 @@ def view_booking():
         print("Bookings found:")
         for booking in m_bookings:
             print(booking)
+
+    return_to_main = input("Press enter to return to main menu...")
+    main_menu()
+
+
+def cancel_booking():
+    """
+    Search for a name and deletes the booking
+    """
+    search_n = input("Please select your name: ")
+
+    try:
+        sales = SHEET.worksheet('bookings')
+    except gspread.WorksheetNotFound:
+        print("Worksheet 'bookings' not found.")
+        return
+
+    try:
+        bookings = sales.get_all_values()
+    except Exception as e:
+        print(f"Error retrieving bookings: {e}")
+        return
+
+    m_bookings = [booking for booking in bookings if booking[0] == search_n]
+
+    if not m_bookings:
+        print(f"No bookings found for {search_n}")
+    else:
+        print("Bookings found: ")
+        for i, booking in enumerate(m_bookings, start=1):
+            print(f"{i}. {booking}")
+
+        while True:
+            try:
+                choice = int(input("Please select a booking to cancel: "))
+                if choice not in range(1, len(m_bookings) + 1):
+                    raise ValueError("Please select a valid booking number.")
+                break
+            except ValueError as ve:
+                print(ve)
+                continue
+
+        try:
+            row_index = sales.find(search_n).row
+            sales.delete_rows(row_index)
+            print("Booking canceled!")
+        except Exception as e:
+            print(f"An error occurred while canceling the booking: {e}")
 
     return_to_main = input("Press enter to return to main menu...")
     main_menu()
