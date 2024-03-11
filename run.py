@@ -44,8 +44,8 @@ def main_menu():
     print("###############################################\n")
     print("Please select an option from the main menu\n")
     print("1. Rent Car")
-    print("2. View Booking")
-    print("3. Cancel Booking\n")
+    print("2. View Booking(s)")
+    print("3. Cancel Booking(s)\n")
 
     while True:
         try:
@@ -199,18 +199,18 @@ def cancel_booking():
     m_bookings = [booking for booking in bookings if booking[0] == search_n]
 
     if not m_bookings:
-        print(f"No bookings found for {search_n}")
+        print(f"No booking(s) found for {search_n}")
     else:
-        print("Bookings found: ")
+        print("Booking(s) found: ")
         print(tabulate(m_bookings, headers=HD, tablefmt="grid"))
 
-        confirm = input("Cancel booking? (yes/no): ").lower()
+        confirm = input("Cancel booking(s)? (yes/no): ").lower()
         if confirm == "yes":
             try:
                 for booking in m_bookings:
                     row_index = sales.find(booking[0]).row
                     sales.delete_rows(row_index)
-                print("All bookings canceled!")
+                print("All booking(s) canceled!")
             except Exception as e:
                 print(f"An error occurred while canceling the bookings: {e}")
         elif confirm == "no":
@@ -237,11 +237,11 @@ def view_booking():
     m_bookings = [booking for booking in bookings if booking[0] == search_n]
 
     if not m_bookings:
-        print(f"No bookings found for {search_n}")
+        print(f"No booking(s) found for {search_n}")
     else:
         headers = bookings[0]
 
-        print("Bookings found:")
+        print("Booking(s) found:")
         print(tabulate(m_bookings, headers=HD, tablefmt="grid"))
 
     return_to_main = input("Press enter to return to main menu...\n")
