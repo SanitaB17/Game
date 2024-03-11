@@ -176,7 +176,7 @@ def booking_cost(car, days):
 
 def cancel_booking():
     """
-    Search for a name and deletes the booking
+    Search for a name and deletes all bookings associated with that name
     """
     os.system('clear')
     search_n = input("Please select your name:\n")
@@ -202,25 +202,21 @@ def cancel_booking():
         print(f"No bookings found for {search_n}")
     else:
         print("Bookings found: ")
-        headers = ['Name', 'Car Model', 'Start Date', 'End Date', 'Days', 'Total Price']
-        print(tabulate(m_bookings, headers=headers, tablefmt="grid"))
+        print(tabulate(m_bookings, headers=HD, tablefmt="grid"))
 
-        while True:
+        confirm = input("Cancel booking? (yes/no): ").lower()
+        if confirm == "yes":
             try:
-                choice = int(input("Enter a booking number to cancel:\n"))
-                if choice not in range(1, len(m_bookings) + 1):
-                    raise ValueError("Please select a valid booking number.")
-                break
-            except ValueError as ve:
-                print(ve)
-                continue
-
-        try:
-            row_index = sales.find(search_n).row
-            sales.delete_rows(row_index)
-            print("Booking canceled!")
-        except Exception as e:
-            print(f"An error occurred while canceling the booking: {e}")
+                for booking in m_bookings:
+                    row_index = sales.find(booking[0]).row
+                    sales.delete_rows(row_index)
+                print("All bookings canceled!")
+            except Exception as e:
+                print(f"An error occurred while canceling the bookings: {e}")
+        elif confirm == "no":
+            print("Booking cancellation canceled.")
+        else:
+            print("Invalid input. Please enter 'yes' or 'no'.")
 
     return_to_main = input("Press enter to return to main menu...\n")
     main_menu()
