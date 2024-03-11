@@ -33,7 +33,7 @@ PRICE_PER_DAY = {
 
 def main_menu():
     """
-    Welcome message and main menu
+    Display the main menu options.
     """
     os.system('clear')
     print("\n###############################################")
@@ -42,13 +42,17 @@ def main_menu():
     print("Please select an option from the main menu\n")
     print("1. Rent Car")
     print("2. View Booking")
-    print("3. Cancel Booking")
+    print("3. Cancel Booking\n")
 
     while True:
         try:
             choice = int(input("Please Enter your choice:\n"))
             if choice not in range(1, 4):
-                raise ValueError("Please select a valid number.")
+                raise ValueError("Please enter a number between 1 and 3.")
+            break
+        except ValueError as ve:
+            print("Invalid choice. Please enter a number between 1 and 3.")
+            continue
 
     if choice == 1:
         rent_car()
@@ -68,8 +72,10 @@ def rent_car():
         try:
             st_d_str = input("Enter start date (DD-MM-YYYY):\n")
             st_d = datetime.strptime(st_d_str, '%d-%m-%Y')
-        except ValueError:
-            print("Please enter a valid date in the format DD-MM-YYYY.")
+            if st_d.date() < datetime.now().date():
+                raise ValueError("Start date should be in the future.")
+        except ValueError as ve:
+            print("Please enter a valid date example 17-07-2027")
             continue
 
         while True:
@@ -171,6 +177,9 @@ def view_booking():
     """
     os.system('clear')
     search_n = input("Please enter your name:\n")
+    while not search_n.isalpha():
+        print("Name should contain only letters.")
+        search_n = input("Please enter your name:\n")
 
     bookings = sales.get_all_values()
 
@@ -193,6 +202,9 @@ def cancel_booking():
     """
     os.system('clear')
     search_n = input("Please select your name:\n")
+    while not search_n.isalpha():
+        print("Name should contain only letters.")
+        search_n = input("Please enter your name:\n")
 
     try:
         sales = SHEET.worksheet('bookings')
@@ -212,7 +224,7 @@ def cancel_booking():
         print(f"No bookings found for {search_n}")
     else:
         print("Bookings found: ")
-        for i, booking in enumerate(m_bookings, start=1):
+        for i, booking in enumerate(m_bookings, start=0):
             print(f"{i}. {booking}")
 
         while True:
