@@ -71,20 +71,26 @@ def rent_car():
     """
     Rent Car function to select car and add to booking
     """
-    os.system('clear')
     cars = list(AVAILABLE.keys())
 
     while True:
-        st_d_str = input("Enter start date (DD-MM-YYYY):\n")
-        end_d_str = input("Enter end date (DD-MM-YYYY):\n")
         try:
+            st_d_str = input("Enter start date (DD-MM-YYYY):\n")
             st_d = datetime.strptime(st_d_str, '%d-%m-%Y')
-            end_d = datetime.strptime(end_d_str, '%d-%m-%Y')
-            if st_d >= end_d:
-                raise ValueError("End date should be after start date.")
-        except ValueError as ve:
-            print(ve)
+        except ValueError:
+            print("Please enter a valid date in the format DD-MM-YYYY.")
             continue
+
+        while True:
+            try:
+                end_d_str = input("Enter end date (DD-MM-YYYY):\n")
+                end_d = datetime.strptime(end_d_str, '%d-%m-%Y')
+                if st_d >= end_d:
+                    raise ValueError("End date should be after start date.")
+                break
+            except ValueError as ve:
+                print(ve)
+                continue
 
         if not any(a_car_available(car, st_d, end_d) for car in cars):
             print("Sorry, no cars available for rent at the specified dates.")
