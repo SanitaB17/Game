@@ -1,5 +1,6 @@
 import gspread
 import os
+from tabulate import tabulate
 from google.oauth2.service_account import Credentials
 from datetime import datetime
 
@@ -29,6 +30,8 @@ PRICE_PER_DAY = {
     'Tesla model Y': 70,
     'Tesla model S': 75
 }
+
+HD = ['Name', 'Car Model', 'Start Date', 'End Date', 'Days', 'Total Price']
 
 
 def main_menu():
@@ -171,31 +174,6 @@ def booking_cost(car, days):
     return PRICE_PER_DAY[car] * days
 
 
-def view_booking():
-    """
-    Search for a name and prints the booking details
-    """
-    os.system('clear')
-    search_n = input("Please enter your name:\n")
-    while not search_n.isalpha():
-        print("Name should contain only letters.")
-        search_n = input("Please enter your name:\n")
-
-    bookings = sales.get_all_values()
-
-    m_bookings = [booking for booking in bookings if booking[0] == search_n]
-
-    if not m_bookings:
-        print(f"No bookings found for {search_n}")
-    else:
-        print("Bookings found:")
-        for booking in m_bookings:
-            print(booking)
-
-    return_to_main = input("Press enter to return to main menu...\n")
-    main_menu()
-
-
 def cancel_booking():
     """
     Search for a name and deletes the booking
@@ -224,8 +202,8 @@ def cancel_booking():
         print(f"No bookings found for {search_n}")
     else:
         print("Bookings found: ")
-        for i, booking in enumerate(m_bookings, start=0):
-            print(f"{i}. {booking}")
+        headers = ['Name', 'Car Model', 'Start Date', 'End Date', 'Days', 'Total Price']
+        print(tabulate(m_bookings, headers=headers, tablefmt="grid"))
 
         while True:
             try:
@@ -243,6 +221,32 @@ def cancel_booking():
             print("Booking canceled!")
         except Exception as e:
             print(f"An error occurred while canceling the booking: {e}")
+
+    return_to_main = input("Press enter to return to main menu...\n")
+    main_menu()
+
+
+def view_booking():
+    """
+    Search for a name and prints the booking details
+    """
+    os.system('clear')
+    search_n = input("Please enter your name:\n")
+    while not search_n.isalpha():
+        print("Name should contain only letters.")
+        search_n = input("Please enter your name:\n")
+
+    bookings = sales.get_all_values()
+
+    m_bookings = [booking for booking in bookings if booking[0] == search_n]
+
+    if not m_bookings:
+        print(f"No bookings found for {search_n}")
+    else:
+        headers = bookings[0]
+
+        print("Bookings found:")
+        print(tabulate(m_bookings, headers=HD, tablefmt="grid"))
 
     return_to_main = input("Press enter to return to main menu...\n")
     main_menu()
