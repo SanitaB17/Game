@@ -45,7 +45,7 @@ def main_menu():
 
     while True:
         try:
-            choice = int(input("Please Enter your choice: "))
+            choice = int(input("Please Enter your choice:\n"))
             if choice not in range(1, 5):
                 raise ValueError("Please enter a number between 1 and 4.")
             break
@@ -60,7 +60,7 @@ def main_menu():
     elif choice == 3:
         cancel_booking()
     elif choice == 4:
-        clear_bookings()  # Clear bookings upon program exit
+        clear_bookings()
         print("Exiting the program.")
         exit()
 
@@ -72,8 +72,8 @@ def rent_car():
     cars = list(AVAILABLE.keys())
 
     while True:
-        st_d_str = input("Enter start date (DD-MM-YYYY): ")
-        end_d_str = input("Enter end date (DD-MM-YYYY): ")
+        st_d_str = input("Enter start date (DD-MM-YYYY):\n")
+        end_d_str = input("Enter end date (DD-MM-YYYY):\n")
         try:
             st_d = datetime.strptime(st_d_str, '%d-%m-%Y')
             end_d = datetime.strptime(end_d_str, '%d-%m-%Y')
@@ -86,7 +86,7 @@ def rent_car():
         if not any(a_car_available(car, st_d, end_d) for car in cars):
             print("Sorry, no cars available for rent at the specified dates.")
             while True:
-                choice = input("Select model or exit? (return/exit): ").lower()
+                choice = input("Select model or exit? (return/exit):\n").lower()
                 if choice == "return":
                     break
                 elif choice == "exit":
@@ -102,7 +102,7 @@ def rent_car():
 
         while True:
             try:
-                choice = int(input("Please select a car model to rent: "))
+                choice = int(input("Please select a car model to rent:\n"))
                 if choice not in range(1, len(cars) + 1):
                     raise ValueError("Please select a valid car number.")
                 car = cars[choice - 1]
@@ -115,10 +115,10 @@ def rent_car():
 
         break
 
-    user_n = input("Please enter your name: ")
+    user_n = input("Please enter your name:\n")
     while not user_n.isalpha():
         print("Name should contain only letters.")
-        user_n = input("Please enter your name: ")
+        user_n = input("Please enter your name:\n")
 
     days = (end_d - st_d).days
     tot_p = booking_cost(car, days)
@@ -128,7 +128,7 @@ def rent_car():
     print(f"Total price: ${tot_p}")
 
     while True:
-        confirm = input("Please confirm your booking (yes/no): ").lower()
+        confirm = input("Please confirm your booking (yes/no):\n").lower()
         if confirm == "yes":
             sales.append_row([user_n, car, st_d_str, end_d_str, days, tot_p])
             print("Booking confirmed!")
@@ -139,7 +139,7 @@ def rent_car():
             break
         else:
             print("Please enter 'yes' or 'no'")
-    return_to_main = input("Press enter to return to main menu...")
+    return_to_main = input("Press enter to return to main menu...\n")
     print("Returning to main menu...")
     main_menu()
 
@@ -170,7 +170,7 @@ def view_booking():
     """
     Search for a name and prints the booking details
     """
-    search_n = input("Please enter your name: ")
+    search_n = input("Please enter your name:\n")
 
     bookings = sales.get_all_values()
 
@@ -183,7 +183,7 @@ def view_booking():
         for booking in m_bookings:
             print(booking)
 
-    return_to_main = input("Press enter to return to main menu...")
+    return_to_main = input("Press enter to return to main menu...\n")
     main_menu()
 
 
@@ -191,7 +191,7 @@ def cancel_booking():
     """
     Search for a name and deletes the booking
     """
-    search_n = input("Please select your name: ")
+    search_n = input("Please select your name:\n")
 
     try:
         sales = SHEET.worksheet('bookings')
@@ -216,7 +216,7 @@ def cancel_booking():
 
         while True:
             try:
-                choice = int(input("Enter a booking number to cancel: "))
+                choice = int(input("Enter a booking number to cancel:\n"))
                 if choice not in range(1, len(m_bookings) + 1):
                     raise ValueError("Please select a valid booking number.")
                 break
@@ -231,7 +231,7 @@ def cancel_booking():
         except Exception as e:
             print(f"An error occurred while canceling the booking: {e}")
 
-    return_to_main = input("Press enter to return to main menu...")
+    return_to_main = input("Press enter to return to main menu...\n")
     main_menu()
 
 
