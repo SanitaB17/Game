@@ -1,4 +1,5 @@
 import gspread
+import os
 from google.oauth2.service_account import Credentials
 from datetime import datetime
 
@@ -34,6 +35,7 @@ def main_menu():
     """
     Welcome message and main menu
     """
+    os.system('cls||clear')
     print("\n###############################################")
     print("Welcome to the Tesla car rental system")
     print("###############################################\n")
@@ -69,6 +71,7 @@ def rent_car():
     """
     Rent Car function to select car and add to booking
     """
+    os.system('cls||clear')
     cars = list(AVAILABLE.keys())
 
     while True:
@@ -86,7 +89,7 @@ def rent_car():
         if not any(a_car_available(car, st_d, end_d) for car in cars):
             print("Sorry, no cars available for rent at the specified dates.")
             while True:
-                choice = input("Select model or exit? (return/exit):\n").lower()
+                choice = input("Select model or exit?(return/exit):\n").lower()
                 if choice == "return":
                     break
                 elif choice == "exit":
@@ -170,6 +173,7 @@ def view_booking():
     """
     Search for a name and prints the booking details
     """
+    os.system('cls||clear')
     search_n = input("Please enter your name:\n")
 
     bookings = sales.get_all_values()
@@ -191,6 +195,7 @@ def cancel_booking():
     """
     Search for a name and deletes the booking
     """
+    os.system('cls||clear')
     search_n = input("Please select your name:\n")
 
     try:
