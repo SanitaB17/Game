@@ -43,17 +43,12 @@ def main_menu():
     print("1. Rent Car")
     print("2. View Booking")
     print("3. Cancel Booking")
-    print("4. Exit\n")
 
     while True:
         try:
             choice = int(input("Please Enter your choice:\n"))
-            if choice not in range(1, 5):
-                raise ValueError("Please enter a number between 1 and 4.")
-            break
-        except ValueError as ve:
-            print(ve)
-            continue
+            if choice not in range(1, 4):
+                raise ValueError("Please select a valid number.")
 
     if choice == 1:
         rent_car()
@@ -61,10 +56,6 @@ def main_menu():
         view_booking()
     elif choice == 3:
         cancel_booking()
-    elif choice == 4:
-        clear_bookings()
-        print("Exiting the program.")
-        exit()
 
 
 def rent_car():
@@ -88,9 +79,8 @@ def rent_car():
                 if st_d >= end_d:
                     raise ValueError("End date should be after start date.")
                 break
-            except ValueError as ve:
-                print(ve)
-                continue
+            except ValueError:
+                print("Please enter a valid date example 17-07-2027")
 
         if not any(a_car_available(car, st_d, end_d) for car in cars):
             print("Sorry, no cars available for rent at the specified dates.")
@@ -113,7 +103,7 @@ def rent_car():
             try:
                 choice = int(input("Please select a car model to rent:\n"))
                 if choice not in range(1, len(cars) + 1):
-                    raise ValueError("Please select a valid car number.")
+                    raise ValueError("Please select a valid number.")
                 car = cars[choice - 1]
                 if not a_car_available(car, st_d, end_d):
                     raise ValueError(f"Sorry, {car} is fully booked.")
@@ -244,21 +234,6 @@ def cancel_booking():
 
     return_to_main = input("Press enter to return to main menu...\n")
     main_menu()
-
-
-def clear_bookings():
-    """
-    Clear all booking data from the spreadsheet, keeping the headings
-    """
-    try:
-        num_rows = len(sales.get_all_values())
-        if num_rows > 1:
-            sales.delete_rows(2, num_rows)
-            print("All booking data cleared successfully.")
-        else:
-            print("No booking data to clear.")
-    except Exception as e:
-        print(f"An error occurred while clearing booking data: {e}")
 
 
 main_menu()
