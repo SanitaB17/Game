@@ -35,7 +35,7 @@ def main_menu():
     """
     Welcome message and main menu
     """
-    os.system('cls||clear')
+    os.system('clear')
     print("\n###############################################")
     print("Welcome to the Tesla car rental system")
     print("###############################################\n")
@@ -71,7 +71,7 @@ def rent_car():
     """
     Rent Car function to select car and add to booking
     """
-    os.system('cls||clear')
+    os.system('clear')
     cars = list(AVAILABLE.keys())
 
     while True:
@@ -173,7 +173,7 @@ def view_booking():
     """
     Search for a name and prints the booking details
     """
-    os.system('cls||clear')
+    os.system('clear')
     search_n = input("Please enter your name:\n")
 
     bookings = sales.get_all_values()
@@ -195,7 +195,7 @@ def cancel_booking():
     """
     Search for a name and deletes the booking
     """
-    os.system('cls||clear')
+    os.system('clear')
     search_n = input("Please select your name:\n")
 
     try:
