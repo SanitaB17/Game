@@ -69,6 +69,7 @@ def rent_car():
     """
     Rent Car function to select car and add to booking
     """
+    os.system('clear')
     cars = list(AVAILABLE.keys())
 
     while True:
