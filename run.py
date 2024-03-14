@@ -123,10 +123,10 @@ def rent_car():
 
         break
 
-    user_n = input("Please enter your name:\n")
+    user_n = input("Please enter your name:\n").upper()
     while not user_n.isalpha():
         print("Name should contain only letters.")
-        user_n = input("Please enter your name:\n")
+        user_n = input("Please enter your name:\n").upper()
 
     days = (end_d - st_d).days
     tot_p = booking_cost(car, days)
@@ -179,10 +179,10 @@ def cancel_booking():
     Search for a name and deletes all bookings associated with that name
     """
     os.system('clear')
-    search_n = input("Please select your name:\n")
-    while not search_n.isalpha():
-        print("Name should contain only letters.")
-        search_n = input("Please enter your name:\n")
+    search_n = input("Please select your name (in CAPITAL LETTERS):\n")
+    while not search_n.isalpha() or not search_n.isupper():
+        print("Name should contain only uppercase letters.")
+        search_n = input("Please enter your name (in CAPITAL LETTERS):\n")
 
     try:
         sales = SHEET.worksheet('bookings')
@@ -196,7 +196,10 @@ def cancel_booking():
         print(f"Error retrieving bookings: {e}")
         return
 
-    m_bookings = [booking for booking in bookings if booking[0] == search_n]
+    m_bookings = [
+        booking for booking in bookings
+        if booking[0].upper() == search_n
+    ]
 
     if not m_bookings:
         print(f"No booking(s) found for {search_n}")
@@ -227,14 +230,18 @@ def view_booking():
     Search for a name and prints the booking details
     """
     os.system('clear')
-    search_n = input("Please enter your name:\n")
-    while not search_n.isalpha():
-        print("Name should contain only letters.")
-        search_n = input("Please enter your name:\n")
+    search_n = input("Please enter your name (in CAPITAL LETTERS):\n")
+    while not search_n.isalpha() or not search_n.isupper():
+        print("Name should contain only uppercase letters.")
+        search_n = input("Please enter your name (in CAPITAL LETTERS):\n")
 
     bookings = sales.get_all_values()
 
-    m_bookings = [booking for booking in bookings if booking[0] == search_n]
+    # Make the search case-insensitive
+    m_bookings = [
+        booking for booking in bookings
+        if booking[0].upper() == search_n
+    ]
 
     if not m_bookings:
         print(f"No booking(s) found for {search_n}")
