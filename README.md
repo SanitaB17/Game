@@ -16,7 +16,7 @@
   - [User Goals](#user-goals)
   - [User Story](#user-story)
   - [Site owners Goals](#site-owners-goals)
-- [Features](#features)
+  - [Program flowchart](#program-flowchart)
 
 
 # UX
@@ -42,5 +42,6 @@
 - Provide feedback or a response to the user when they perform a task or action.
 -Implement a reservation system to allow users to schedule car rentals in advance, ensuring availability and convenience.
 
-# Features
+## Program flowchart
 
+During planning, I created a flowchart of how I wanted program to work and interact. The flowchart was created using [Figma](https://www.figma.com/)
