@@ -4,7 +4,7 @@
 
 [Live Preview of Tesla](https://rent-tesla-fbe3f5ee7ebb.herokuapp.com/)
 
-![Main menu](docs/images/main.png)
+![Main view](docs/images/main.JPG)
 
 
 ## Table of Contents
