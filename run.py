@@ -44,7 +44,7 @@ def main_menu():
     print("###############################################\n")
     print("Please select an option from the main menu\n")
     print("1. Rent Car")
-    print("2. View Booking\n")
+    print("2. View Booking")
     print("3. Cancel Booking\n")
 
     while True:
@@ -247,7 +247,7 @@ def view_booking():
     else:
         print("Booking(s) found:")
         print(tabulate(m_bookings, headers=HD, tablefmt="grid"))
-  
+
     input("Press enter to return to main menu...\n")
     main_menu()
 
