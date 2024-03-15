@@ -40,7 +40,7 @@
 - Easy to navigate.
 - Provide a diverse selection of Tesla car models and prices.
 - Provide feedback or a response to the user when they perform a task or action.
--Implement a reservation system to allow users to schedule car rentals in advance, ensuring availability and convenience.
+- Implement a reservation system to allow users to schedule car rentals in advance, ensuring availability and convenience.
 
 ## Program flowchart
 

@@ -44,8 +44,8 @@ def main_menu():
     print("###############################################\n")
     print("Please select an option from the main menu\n")
     print("1. Rent Car")
-    print("2. View Booking(s)")
-    print("3. Cancel Booking(s)\n")
+    print("2. View Booking\n")
+    print("3. Cancel Booking\n")
 
     while True:
         try:
@@ -148,7 +148,7 @@ def rent_car():
             break
         else:
             print("Please enter 'yes' or 'no'")
-    return_to_main = input("Press enter to return to main menu...\n")
+            input("Press enter to return to main menu...\n")
     print("Returning to main menu...")
     main_menu()
 
@@ -207,14 +207,13 @@ def cancel_booking():
     else:
         print("Booking(s) found: ")
         print(tabulate(m_bookings, headers=HD, tablefmt="grid"))
+        row_index = int(input("Press enter row of booking to cancel...\n"))
 
         confirm = input("Cancel booking(s)? (yes/no): ").lower()
         if confirm == "yes":
             try:
-                for booking in m_bookings:
-                    row_index = sales.find(booking[0]).row
-                    sales.delete_rows(row_index)
-                print("All booking(s) canceled!")
+                sales.delete_rows(row_index + 1)
+                print("Booking canceled!")
             except Exception as e:
                 print(f"An error occurred while canceling the bookings: {e}")
         elif confirm == "no":
@@ -222,7 +221,7 @@ def cancel_booking():
         else:
             print("Invalid input. Please enter 'yes' or 'no'.")
 
-    return_to_main = input("Press enter to return to main menu...\n")
+    input("Press enter to return to main menu...\n")
     main_menu()
 
 
@@ -238,7 +237,6 @@ def view_booking():
 
     bookings = sales.get_all_values()
 
-    # Make the search case-insensitive
     m_bookings = [
         booking for booking in bookings
         if booking[0].upper() == search_n
@@ -247,12 +245,10 @@ def view_booking():
     if not m_bookings:
         print(f"No booking(s) found for {search_n}")
     else:
-        headers = bookings[0]
-
         print("Booking(s) found:")
         print(tabulate(m_bookings, headers=HD, tablefmt="grid"))
-
-    return_to_main = input("Press enter to return to main menu...\n")
+  
+    input("Press enter to return to main menu...\n")
     main_menu()
 
 
