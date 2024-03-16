@@ -17,14 +17,12 @@ SHEET = GSPREAD_CLIENT.open('tesla')
 
 sales = SHEET.worksheet('bookings')
 
-# Global variable for car availability
 AVAILABLE = {
     'Tesla model 3': 1,
     'Tesla model Y': 2,
     'Tesla model S': 1
 }
 
-# Global variable for car rental prices
 PRICE_PER_DAY = {
     'Tesla model 3': 50,
     'Tesla model Y': 70,
@@ -35,9 +33,6 @@ HD = ['Name', 'Car Model', 'Start Date', 'End Date', 'Days', 'Total Price']
 
 
 def main_menu():
-    """
-    Display the main menu options.
-    """
     os.system('clear')
     print("\n###############################################")
     print("Welcome to the Tesla car rental system")
@@ -66,9 +61,6 @@ def main_menu():
 
 
 def rent_car():
-    """
-    Rent Car function to select car and add to booking
-    """
     os.system('clear')
     cars = list(AVAILABLE.keys())
 
@@ -154,9 +146,6 @@ def rent_car():
 
 
 def a_car_available(car, start_date, end_date):
-    """
-    Checks if a specific car is available for the specified dates
-    """
     bookings = sales.get_all_values()
     for booking in bookings:
         if booking[1] == car:
@@ -169,16 +158,10 @@ def a_car_available(car, start_date, end_date):
 
 
 def booking_cost(car, days):
-    """
-    Calculates total price for the car rental
-    """
     return PRICE_PER_DAY[car] * days
 
 
 def cancel_booking():
-    """
-    Search for a name and deletes all bookings associated with that name
-    """
     os.system('clear')
     search_n = input("Please select your name (in CAPITAL LETTERS):\n")
     while not search_n.isalpha() or not search_n.isupper():
@@ -234,9 +217,6 @@ def cancel_booking():
 
 
 def view_booking():
-    """
-    Search for a name and prints the booking details
-    """
     os.system('clear')
     search_n = input("Please enter your name (in CAPITAL LETTERS):\n")
     while not search_n.isalpha() or not search_n.isupper():

@@ -13,7 +13,7 @@
 - [UX](#ux)
   - [User](#user)
   - [User Goals](#user-goals)
-  - [User Story](#user-story)
+  - [User Stories](#user-stories)
   - [Site owners Goals](#site-owners-goals)
   - [Program flowchart](#program-flowchart)
 - [Features](#features)
@@ -21,6 +21,12 @@
   - [Future Features](#future-features)
 - [Technology used](#technology-used)
 - [Testing and Validation](#testing-and-validation)
+- [Deployment](#deployment)
+  - [Clone the Repository](#clone-the-repository)
+  - [APIs](#apis)
+  - [Deploying app on Heroku](#deploying-app-on-heroku)
+- [Credits](#credits)
+- [Acknowledgements](#acknowledgements)
 
 # UX
 
@@ -32,7 +38,7 @@
 - View Booking.
 - Cancel booking.
 
-## User Story
+## User Stories
 
 - As a  user, I want to be able to rent a Tesla car so that I can use it for my transportation needs.
 - As a  user, I want to view my booking details so that I can verify the information.
@@ -143,7 +149,7 @@ During planning, I created a flowchart of how I wanted program to work and inter
 
 - **Functional Testing:**
 
-|Test scenario|Steps|Observation| Pass |
+|Test scenario|Steps|Observation| Pass/Fail |
 |-------------|------------------|-----------|-------|
 |Main Menu - selecting options| 1.Input letters.<br>2.Input letters, numbers, and symbols.<br>3.Input letters '1', '2', and '3'.<br>4.Input numbers greater than '3'.|1.Program should prompt to enter a number between '1' and '3'.<br>2.Program should prompt to enter a number between '1' and '3'.<br>3.Program should navigate to the selected option.<br>4.Program should prompt to enter a number between '1' and '3'.|1.Pass<br>2.Pass<br>3.Pass<br>4.Pass|
 |Rent Car - selecting start date|1.Input letters.<br>2.Input letters, numbers, and symbols.<br>3.Input past dates.<br>4.Input the current date.<br>5. Input future dates.|1.Program should prompt to enter a valid date.<br>2.Program should prompt to enter a valid date.<br>3.Program should prompt to enter a valid date.<br>4.Program should prompt to enter a valid date.<br>5.Program should prompt to enter the end date.|1.Pass<br>2.Pass<br>3.Pass<br>4.Pass<br>5.Pass|
@@ -155,3 +161,132 @@ During planning, I created a flowchart of how I wanted program to work and inter
 |Cancel booking - users booking data display|1.Enter the user's name with no booking.<br>2.Enter the user's name with booking.|1.Program should display: "No booking found for USER."<br>2.Program should display users booking and ask user to cancel booking(s) (yes/no).|1.Pass<br>2.Pass|
 |Cancel booking - yes/no confirmation|1.Input numbers.<br>2.Input letters, numbers, and symbols.<br>3.Input yes.<br>4.Input no.|1.Program should display: "Invalid input. Please enter 'yes' or 'no'." and prompt the user to enter yes/no.<br>2.Program should display: "Invalid input. Please enter 'yes' or 'no'." and prompt the user to enter yes/no.<br>3.Program should return to the main menu.<br>4.Program should display: "Booking cancelation canceled."|1.Pass<br>2Pass<br>3.Pass<br>4.Pass|
 
+\
+&nbsp;
+[Back to Top](#table-of-contents)
+\
+&nbsp;
+
+- **Testing User Stories**
+
+|User Stories|Pass/Fail|
+|-------------|------------------|
+|As a  user, I want to be able to rent a Tesla car so that I can use it for my transportation needs.|Pass|
+|As a  user, I want to view my booking details so that I can verify the information.|Pass|
+|As a  user,  I want to cancel my booking if my plans change so that I can avoid unnecessary charges and free up the car for other customers.|Pass|
+
+\
+&nbsp;
+[Back to Top](#table-of-contents)
+\
+&nbsp;
+
+- **Validator Testing**
+  - **Python** No error were found passing through the [pep8ci](https://pep8ci.herokuapp.com/)
+
+![Validation](docs/images/validation.JPG)
+
+\
+&nbsp;
+[Back to Top](#table-of-contents)
+\
+&nbsp;
+
+# Deployment
+
+## Clone the Repository
+
+Navigate to the GitHub Repository you want to clone to use locally:
+
+1. Click on the code drop down button
+2. Click on HTTPS
+3. Copy the repository link to the clipboard
+4. Open your IDE of choice
+5. Type git clone copied-git-url into the IDE terminal
+
+The project will now be cloned on your local machine for use.
+
+\
+&nbsp;
+[Back to Top](#table-of-contents)
+\
+&nbsp;
+
+## APIs
+
+For setting up APIs I falowed videos and instructions provided in Love Sandwiches and [
+Spreadsheet Point](https://www.youtube.com/watch?v=-vBbkrk9sdA&list=LL&index=12&t=802s).
+
+**APIs used for this project:**
+
+- Google Drive API.
+- Google Sheet API.
+
+\
+&nbsp;
+[Back to Top](#table-of-contents)
+\
+&nbsp;
+
+## Deploying app on Heroku
+
+1. **Update requirements.txt file**:
+   - In your IDE, run the command: `pip3 freeze > requirements.txt` to include all dependencies.
+   - Commit the changes and push to GitHub.
+2. **Log in to Heroku**:
+   - Access your Heroku account.
+3. **Create new app**:
+   - From the dashboard, click "New" (top right corner) and choose "Create new app".
+   - Provide a unique name for your app (e.g., "rent-tesla") and select your preferred region (e.g., Europe).
+   - Click "create app".
+4. **Configure environment variables**:
+   - Navigate to the settings tab, find "Config Vars", and click "Reveal config vars".
+   - Add a config var:
+     - KEY: `CREDS`
+     - VALUE: Copy and paste the contents of your creds.json file.
+   - Add another config var:
+     - KEY: `PORT`
+     - VALUE: `8000`.
+5. **Set up buildpacks**:
+   - Scroll to the "Buildpacks" section and click "Add buildpack".
+   - Select Python as the first buildpack and save changes.
+   - Add another buildpack:
+     - Select Node.js.
+     - Save changes again.
+     - Ensure that the Python buildpack is positioned above the Node.js buildpack.
+6. **Connect to GitHub**:
+   - Navigate to the "Deploy" section by clicking the "Deploy" tab.
+   - Choose "GitHub" as the deployment method and click "Connect to GitHub".
+   - Search for your GitHub repository and click "Connect".
+7. **Deploy the app**:
+   - Scroll down and click "Deploy Main".
+8. **View deployed app**:
+   - Once the app is deployed, Heroku will notify you and provide a button to view the app.
+
+\
+&nbsp;
+[Back to Top](#table-of-contents)
+\
+&nbsp;
+
+# Credits
+
+- **[Tech Coffee Break
+](https://www.youtube.com/watch?v=WtBT2U3okvA&list=LL&index=6&t=57s)** used to create virtual environment for Python in VS Code.
+- **Love Sandwiches** and **[
+Spreadsheet Point](https://www.youtube.com/watch?v=-vBbkrk9sdA&list=LL&index=12&t=802s)**  used how to create and link APIs.
+- **[Stackoverflow](https://stackoverflow.com/questions/2084508/clear-the-terminal-in-python)** used to clear Python terminal.
+- **[Stackoverflow](https://stackoverflow.com/questions/70532876/no-module-named-tabulate-0-8-9)** used to import tabulate.
+- **[Programiz](https://www.programiz.com/python-programming/datetime)** used to import datetime.
+- **[Ammon Quarshie](https://www.youtube.com/watch?v=KE04NP5luLY&t=1s)** used for project insparation.
+
+# Acknowledgements
+
+- The Code Institute community and my Cohort Facilitator **Laura Mayock**, for motivation and support.
+- My mentor, **Gareth McGirr**, for providing me with information and advices through the development process.
+
+\
+&nbsp;
+[Back to Top](#table-of-contents)
+\
+&nbsp;
