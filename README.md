@@ -19,6 +19,8 @@
   - [Program flowchart](#program-flowchart)
 - [Features](#features)
   - [Existing Features](#existing-features)
+  - [Future Features](#future-features)
+- [Technology used](#technology-used)
 
 
 # UX
@@ -103,4 +105,45 @@ During planning, I created a flowchart of how I wanted program to work and inter
 
 - Cancel Booking:
   - In this section, users are provided with the option to cancel their booking. Users will be prompted to input their name to identify their booking. If a booking is found for the entered name, the system will display all relevant booking information and prompt the user to confirm the cancellation. If confirmed, the booking will be canceled.
+  
+![Cancel Booking](docs/images/cancel-b.JPG)
+
   - If no booking is found for the entered name, user will be informed accordingly.
+
+![Cancel Booking Not Found](docs/images/cancel-b-not-f.JPG)
+
+\
+&nbsp;
+[Back to Top](#table-of-contents)
+\
+&nbsp;
+
+## Future Features
+
+- Generate Booking IDs:
+  -  When a user makes a booking, generate a unique booking ID for that reservation.
+ 
+# Technology used
+
+- **[HTML](https://www.youtube.com/watch?v=3OTSsq9Y0P4&t=5s)**
+- **[CSS](https://www.youtube.com/watch?v=nV9oaUglBTE)**
+- **[JavaScript](https://www.youtube.com/watch?v=wm4F0Zqxu5A)**
+- **[Python](https://www.youtube.com/watch?v=vRsFb4nMGP4)** Was used to create the program.
+- **[os Module](https://stackoverflow.com/questions/2084508/clear-the-terminal-in-python)** Used for clearing the terminal.
+- **[tabulate Module](https://360digitmg.com/blog/python-tabulate)** Used to present data in a table format.
+- **[datetime Module](https://www.programiz.com/python-programming/datetime)** Used for handling date and time operations.
+- **[VSCode](https://en.wikipedia.org/wiki/Visual_Studio_Code)** Was used to write code.
+- **[Google Sheets](https://en.wikipedia.org/wiki/Google_Sheets)** Was used to store data.
+- **[gspread](https://github.com/burnash/gspread)** Was used to allow the Python program to interact with Google Sheets.
+- **[google.oauth2.service_account Credentials](https://google-auth.readthedocs.io/en/latest/reference/google.oauth2.service_account.html#google.oauth2.service_account.Credentials)**: Used for authentication with Google APIs using service account credentials.
+- **[Heroku](https://www.heroku.com/)** Was used to deploy the project.
+- **[GitHub](https://en.wikipedia.org/wiki/GitHub)** Version control and repository hosting.
+- **[Git](https://en.wikipedia.org/wiki/Git)** - Version control system used to commit and push code during development.
+- **[Figma](https://www.figma.com/)** - Used to create the flowchart.
+- **[pep8ci](https://pep8ci.herokuapp.com/)** Used to check python code for errors.
+
+\
+&nbsp;
+[Back to Top](#table-of-contents)
+\
+&nbsp;
