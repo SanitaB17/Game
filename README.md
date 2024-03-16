@@ -98,7 +98,7 @@ During planning, I created a flowchart of how I wanted program to work and inter
 
 - **Cancel Booking:**
   - In this section, users are provided with the option to cancel their booking. Users will be prompted to input their name to identify their booking. If a booking is found for the entered name, the system will display all relevant booking information and prompt the user to confirm the cancellation. If confirmed, the booking will be canceled.
-  ![Cancel Booking](docs/images/cancel-b.JPG)
+  ![Cancel Booking](docs/images/cancel-booking.JPG)
   - If no booking is found for the entered name, user will be informed accordingly.
   ![Cancel Booking Not Found](docs/images/cancel-b-not-f.JPG)
 
