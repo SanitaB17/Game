@@ -4,7 +4,7 @@
 
 [Live Preview of Tesla](https://rent-tesla-fbe3f5ee7ebb.herokuapp.com/)
 
-![Main view](docs/images/main.JPG)
+![Main view](docs/images/main-view.JPG)
 
 
 ## Table of Contents
@@ -17,6 +17,8 @@
   - [User Story](#user-story)
   - [Site owners Goals](#site-owners-goals)
   - [Program flowchart](#program-flowchart)
+- [Features](#features)
+  - [Existing Features](#existing-features)
 
 
 # UX
@@ -45,3 +47,42 @@
 ## Program flowchart
 
 During planning, I created a flowchart of how I wanted program to work and interact. The flowchart was created using [Figma](https://www.figma.com/)
+
+![Flow-chart](docs/images/flow-chart.JPG)
+
+\
+&nbsp;
+[Back to Top](#table-of-contents)
+\
+&nbsp;
+
+# Features
+
+## Existing Features
+
+- The Main Menu:
+  - Users are greeted and presented with three options to choose from.
+
+![Main](docs/images/main.JPG)
+
+\
+&nbsp;
+[Back to Top](#table-of-contents)
+\
+&nbsp;
+
+- Rent Car Section:
+  - This section allows users to input their desired rental dates (present and future dates) and choose a car model. It also provides feedback if a car is unavailable during those dates. 
+
+![Selected Car Unavailable](docs/images/car-unavailable-display.JPG)
+
+  - Displays a summary of booking details and cost.
+
+![Rent Car Section](docs/images/rent-car-section.JPG)
+
+\
+&nbsp;
+[Back to Top](#table-of-contents)
+\
+&nbsp;
+

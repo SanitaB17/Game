@@ -119,7 +119,7 @@ def rent_car():
                     raise ValueError(f"Sorry, {car} is fully booked.")
                 break
             except ValueError as ve:
-                print(ve)
+                print("Invalid choice. Please select a valid number.")
                 continue
 
         break
@@ -203,13 +203,13 @@ def cancel_booking():
     ]
 
     if not m_bookings:
-        print(f"No booking(s) found for {search_n}")
+        print(f"No booking found for {search_n}")
     else:
-        print("Booking(s) found: ")
+        print("Booking found: ")
         print(tabulate(m_bookings, headers=HD, tablefmt="grid"))
         row_index = int(input("Press enter row of booking to cancel...\n"))
 
-        confirm = input("Cancel booking(s)? (yes/no): ").lower()
+        confirm = input("Cancel booking? (yes/no): ").lower()
         if confirm == "yes":
             try:
                 sales.delete_rows(row_index + 1)
