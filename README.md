@@ -16,6 +16,7 @@
   - [User Stories](#user-stories)
   - [Site owners Goals](#site-owners-goals)
   - [Program flowchart](#program-flowchart)
+- [Data Storage (Google Sheets)](#data-storage-google-sheets)
 - [Features](#features)
   - [Existing Features](#existing-features)
   - [Future Features](#future-features)
@@ -62,6 +63,10 @@ During planning, I created a flowchart of how I wanted program to work and inter
 [Back to Top](#table-of-contents)
 \
 &nbsp;
+
+# Data Storage (Google Sheets)
+
+The data for the application's rental details is stored in [Google Sheet](https://docs.google.com/spreadsheets/d/1fsWRkws2x6XrVwWYo9KOZ6PZZ2VjmHhXSxuizXOrY8I/edit#gid=0).
 
 # Features
 
