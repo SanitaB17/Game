@@ -22,6 +22,10 @@
   - [Future Features](#future-features)
 - [Technology used](#technology-used)
 - [Testing and Validation](#testing-and-validation)
+  - [Functional Testing](#functional-testing)
+  - [Testing User Stories](#testing-user-stories)
+  - [Validator Testing](#validator-testing)
+  - [Bugs and Unfixed Bugs](#bugs-and-unfixed-bugs)
 - [Deployment](#deployment)
   - [Clone the Repository](#clone-the-repository)
   - [APIs](#apis)
@@ -152,7 +156,7 @@ The data for the application's rental details is stored in [Google Sheet](https:
 
 # Testing and Validation
 
-- **Functional Testing:**
+## Functional Testing
 
 |Test scenario|Steps|Observation| Pass/Fail |
 |-------------|------------------|-----------|-------|
@@ -172,7 +176,7 @@ The data for the application's rental details is stored in [Google Sheet](https:
 \
 &nbsp;
 
-- **Testing User Stories**
+## Testing User Stories
 
 |User Stories|Pass/Fail|
 |-------------|------------------|
@@ -186,10 +190,20 @@ The data for the application's rental details is stored in [Google Sheet](https:
 \
 &nbsp;
 
-- **Validator Testing**
+## Validator Testing
   - **Python** No error were found passing through the [pep8ci](https://pep8ci.herokuapp.com/)
 
 ![Validation](docs/images/validation.JPG)
+
+\
+&nbsp;
+[Back to Top](#table-of-contents)
+\
+&nbsp;
+
+## Bugs and Unfixed Bugs
+
+To the best of my knowledge and understanding there are no bugs present.
 
 \
 &nbsp;
