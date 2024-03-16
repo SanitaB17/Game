@@ -119,7 +119,7 @@ def rent_car():
                     raise ValueError(f"Sorry, {car} is fully booked.")
                 break
             except ValueError as ve:
-                print(ve)
+                print("Invalid choice.please select a valid number.")
                 continue
 
         break
@@ -203,21 +203,29 @@ def cancel_booking():
     ]
 
     if not m_bookings:
-        print(f"No booking found for {search_n}")
-    else:
-        print("Booking found: ")
-        print(tabulate(m_bookings, headers=HD, tablefmt="grid"))
-        row_index = int(input("Enter booking row to cancel.\n"))
+        print(f"No booking(s) found for {search_n}")
+        input("Press enter to return to main menu...\n")
+        main_menu()
+        return
 
-        confirm = input("Cancel booking? (yes/no): ").lower()
+    print("Bookings found: ")
+    print(tabulate(m_bookings, headers=HD, tablefmt="grid"))
+
+    confirm = ""
+    while confirm not in ["yes", "no"]:
+        confirm = input("Cancel booking(s)? (yes/no): ").lower()
         if confirm == "yes":
             try:
-                sales.delete_rows(row_index + 1)
-                print("Booking canceled!")
+                for booking in m_bookings:
+                    row_index = sales.find(booking[0]).row
+                    sales.delete_rows(row_index)
+                print("All booking(s) canceled!")
+                break
             except Exception as e:
                 print(f"An error occurred while canceling the bookings: {e}")
         elif confirm == "no":
             print("Booking cancellation canceled.")
+            break
         else:
             print("Invalid input. Please enter 'yes' or 'no'.")
 
