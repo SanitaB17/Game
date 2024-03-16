@@ -86,3 +86,21 @@ During planning, I created a flowchart of how I wanted program to work and inter
 \
 &nbsp;
 
+- View Booking:
+  - This section allows users to search for their booking by entering their name. If the user has booked a car, it will display all information regarding the user's booking.
+  
+![View Booking](docs/images/view-booking.JPG)
+
+  - If no booking is found for the entered name, it will inform the user accordingly.
+
+![Booking Not Found](docs/images/booking-not-found.JPG)
+
+\
+&nbsp;
+[Back to Top](#table-of-contents)
+\
+&nbsp;
+
+- Cancel Booking:
+  - In this section, users are provided with the option to cancel their booking. Users will be prompted to input their name to identify their booking. If a booking is found for the entered name, the system will display all relevant booking information and prompt the user to confirm the cancellation. If confirmed, the booking will be canceled.
+  - If no booking is found for the entered name, user will be informed accordingly.
